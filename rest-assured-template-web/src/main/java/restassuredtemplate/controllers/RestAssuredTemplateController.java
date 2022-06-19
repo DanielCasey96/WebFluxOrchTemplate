@@ -10,9 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import restassuredtemplate.models.MultipleDataResponses;
 import restassuredtemplate.models.SingleDataResponse;
 import restassuredtemplate.services.MockedService;
+
+import java.util.List;
 
 @RestController
 @Validated
@@ -41,6 +45,22 @@ public class RestAssuredTemplateController {
                     .info(String.format("Data retrieved Successfully (%s)", trackingTag)))
                 .doOnError(error -> logger
                     .info(String.format("Getting data failed (%s)", error, trackingTag))));
+    }
+
+    @GetMapping(value = "/rest-assured-template/data/multiple/{idValue}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<Flux<MultipleDataResponses>> getMultipleData(
+            @RequestHeader("Correlation-Id") String correlationId,
+            @PathVariable String idValue) {
+
+        String trackingTag = String.format("correlation id: %s, value id: %s", correlationId, idValue);
+        logger.info(String.format("Getting data (%s)", trackingTag));
+
+        return ResponseEntity.ok()
+                .body(mockedService.getMultipleData(correlationId, idValue)
+                        .doOnNext(response -> logger
+                                .info(String.format("Data retrieved Successfully (%s)", trackingTag)))
+                        .doOnError(error -> logger
+                                .info(String.format("Getting data failed (%s)", error, trackingTag))));
     }
 
 }
