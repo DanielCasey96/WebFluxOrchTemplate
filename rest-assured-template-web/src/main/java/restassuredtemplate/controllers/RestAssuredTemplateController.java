@@ -14,33 +14,31 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import restassuredtemplate.models.MultipleDataResponses;
 import restassuredtemplate.models.SingleDataResponse;
-import restassuredtemplate.services.MockedService;
-
-import java.util.List;
+import restassuredtemplate.services.MockedProvider;
 
 @RestController
 @Validated
 public class RestAssuredTemplateController {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
-    private final MockedService mockedService;
+    private final MockedProvider mockedProvider;
 
     @Autowired
-    public RestAssuredTemplateController(MockedService mockedService) {
+    public RestAssuredTemplateController(MockedProvider mockedProvider) {
 
-        this.mockedService = mockedService;
+        this.mockedProvider = mockedProvider;
     }
 
     @GetMapping(value = "/rest-assured-template/data/single/{idValue}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Mono<SingleDataResponse>> getSingleData(
             @RequestHeader("Correlation-Id") String correlationId,
-            @PathVariable String idValue) {
+            @PathVariable Integer idValue) {
 
-        String trackingTag = String.format("correlation id: %s, value id: %s", correlationId, idValue);
+        String trackingTag = String.format("correlation id: %s, value id: %s", correlationId, idValue.toString());
         logger.info(String.format("Getting data (%s)", trackingTag));
 
         return ResponseEntity.ok()
-                .body(mockedService.getSingleData(correlationId, idValue)
+                .body(mockedProvider.getSingleData(correlationId, idValue)
                 .doOnNext(response -> logger
                     .info(String.format("Data retrieved Successfully (%s)", trackingTag)))
                 .doOnError(error -> logger
@@ -50,13 +48,13 @@ public class RestAssuredTemplateController {
     @GetMapping(value = "/rest-assured-template/data/multiple/{idValue}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Flux<MultipleDataResponses>> getMultipleData(
             @RequestHeader("Correlation-Id") String correlationId,
-            @PathVariable String idValue) {
+            @PathVariable Integer idValue) {
 
-        String trackingTag = String.format("correlation id: %s, value id: %s", correlationId, idValue);
+        String trackingTag = String.format("correlation id: %s, value id: %s", correlationId, idValue.toString());
         logger.info(String.format("Getting data (%s)", trackingTag));
 
         return ResponseEntity.ok()
-                .body(mockedService.getMultipleData(correlationId, idValue)
+                .body(mockedProvider.getMultipleData(correlationId, idValue)
                         .doOnNext(response -> logger
                                 .info(String.format("Data retrieved Successfully (%s)", trackingTag)))
                         .doOnError(error -> logger
