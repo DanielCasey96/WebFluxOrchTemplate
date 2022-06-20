@@ -1,0 +1,16 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    wiremockDependencies
+}
+
+dependencies {
+    compile "com.github.tomakehurst:wiremock-jre8-standalone:2.33.2"
+    wiremockDependencies "com.github.tomakehurst:wiremock-standalone:2.33.2"
+}
