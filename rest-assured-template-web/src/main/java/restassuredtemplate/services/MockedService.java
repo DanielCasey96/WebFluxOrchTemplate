@@ -1,15 +1,21 @@
 package restassuredtemplate.services;
 
-import reactor.core.publisher.Flux;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
-import restassuredtemplate.models.MultipleDataResponses;
 import restassuredtemplate.models.SingleDataResponse;
 
+@Service
 public class MockedService {
-    public Mono<SingleDataResponse> getSingleData(String correlationId, String idValue) {
-        return null;
+
+    private final MockedProvider mockedProvider;
+
+    @Autowired
+    public MockedService(MockedProvider mockedProvider) {
+        this.mockedProvider = mockedProvider;
     }
-    public Flux<MultipleDataResponses> getMultipleData(String correlationId, String idValue) {
-        return null;
+
+    public Mono<SingleDataResponse> getSingleDataResponse(String correlationId, Integer idValue) {
+        return mockedProvider.getSingleData(correlationId, idValue);
     }
 }
