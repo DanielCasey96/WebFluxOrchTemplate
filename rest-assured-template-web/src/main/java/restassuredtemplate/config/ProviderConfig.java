@@ -31,7 +31,7 @@ public class ProviderConfig {
 
     @Bean
     public MockedProvider mockedProvider(
-            @Value("http://localhost:4444") String mockedServiceUrl,
+            @Value("http://localhost:9090") String mockedServiceUrl,
             @Value("1000") Integer connectTimeout,
             @Value("1000") Integer readTimeout,
             @Value("1000") Integer writeTimeout) {
