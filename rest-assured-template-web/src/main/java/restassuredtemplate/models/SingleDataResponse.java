@@ -13,8 +13,8 @@ public class SingleDataResponse {
         this.basicValue = basicValue;
     }
 
-//    public String getSingleData() {
-//
-//        return.this.basicValue;
-//    }
+    public String getSingleData() {
+
+        return this.basicValue;
+    }
 }
