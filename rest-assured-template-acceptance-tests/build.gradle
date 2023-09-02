@@ -21,7 +21,7 @@ dependencies {
 
 configurations {
     cucumberRuntime {
-        extendsFrom testRuntime
+        extendsFrom runtimeClasspath
     }
 }
 

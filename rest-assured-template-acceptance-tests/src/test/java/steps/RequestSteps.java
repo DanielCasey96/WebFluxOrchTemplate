@@ -19,6 +19,5 @@ public class RequestSteps extends WiremockUtil {
     @When("I submit a request using the value id <(\s)> but no headers")
     public void getRequest() {
         
-        }
     }
 }
