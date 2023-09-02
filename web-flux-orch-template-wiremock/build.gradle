@@ -6,11 +6,7 @@ repositories {
     mavenCentral()
 }
 
-configurations {
-    wiremockDependencies
-}
-
 dependencies {
-    testImplementation "com.github.tomakehurst:wiremock-jre8-standalone:2.33.2"
-    wiremockDependencies "com.github.tomakehurst:wiremock-standalone:2.33.2"
+    testImplementation("org.wiremock:wiremock:3.0.0")
+    testImplementation "org.wiremock:wiremock-standalone:3.0.0"
 }

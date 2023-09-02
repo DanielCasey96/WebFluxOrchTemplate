@@ -10,13 +10,11 @@ public class MultipleDataResponses {
 
     }
 
-//    public MultipleDataResponses(List multiValue) {
-//
-//        this.mutliValue = mutliValue;
-//    }
+    public MultipleDataResponses(List multiValue) {
+        this.multiValue = multiValue;
+    }
 
-//    public String MultipleDataResponses() {
-//
-//        return.this.mutliValue;
-//    }
+    public List MultipleDataResponses() {
+        return this.multiValue;
+    }
 }

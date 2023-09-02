@@ -29,7 +29,7 @@ public class WebFluxOrchTemplateController {
         this.mockedProvider = mockedProvider;
     }
 
-    @GetMapping(value = "/rest-assured-template/data/single/{idValue}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping(value = "/web-flux-orch-template/data/single/{idValue}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Mono<SingleDataResponse>> getSingleData(
             @RequestHeader("Correlation-Id") String correlationId,
             @PathVariable Integer idValue) {
@@ -45,7 +45,7 @@ public class WebFluxOrchTemplateController {
                     .info(String.format("Getting data failed (%s)", error, trackingTag))));
     }
 
-    @GetMapping(value = "/rest-assured-template/data/multiple/{idValue}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping(value = "/web-flux-orch-template/data/multiple/{idValue}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Flux<MultipleDataResponses>> getMultipleData(
             @RequestHeader("Correlation-Id") String correlationId,
             @PathVariable Integer idValue) {

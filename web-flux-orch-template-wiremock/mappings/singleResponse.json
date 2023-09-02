@@ -1,13 +1,14 @@
 {
   "request": {
     "method": "GET",
-    "url": "/rest-assured-template/data/single/.*"
+    "urlPathPattern": "/rest-assured-template/service/data/single/([0-9]*)"
   },
   "response": {
     "status": 200,
-    "body": "Hello world!",
+    "bodyFileName": "example.json",
     "headers": {
-      "Content-Type": "text/plain"
+      "Content-Type": "application/json",
+      "Correlation-Id": "12dsfs-213g"
     }
   }
 }
