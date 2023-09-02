@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel target="15">
+      <module name="RestAssuredTemplate.rest-assured-template-acceptance-tests" target="18" />
+      <module name="RestAssuredTemplate.rest-assured-template-acceptance-tests.main" target="18" />
+      <module name="RestAssuredTemplate.rest-assured-template-acceptance-tests.test" target="18" />
+      <module name="RestAssuredTemplate.rest-assured-template-web" target="18" />
+      <module name="RestAssuredTemplate.rest-assured-template-web.main" target="18" />
+      <module name="RestAssuredTemplate.rest-assured-template-web.test" target="18" />
+      <module name="RestAssuredTemplate.rest-assured-template-wiremock" target="18" />
+      <module name="RestAssuredTemplate.rest-assured-template-wiremock.main" target="18" />
+      <module name="RestAssuredTemplate.rest-assured-template-wiremock.test" target="18" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

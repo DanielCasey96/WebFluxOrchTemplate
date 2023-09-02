@@ -1,0 +1,5 @@
+rootProject.name = 'RestAssuredTemplate'
+include 'web-flux-orch-template-web'
+include 'web-flux-orch-template-wiremock'
+include 'web-flux-orch-template-acceptance-tests'
+
