@@ -11,31 +11,12 @@ repositories {
 
 dependencies {
     implementation 'org.junit.jupiter:junit-jupiter:5.4.2'
-    testImplementation 'io.cucumber:cucumber-java:6.10.4'
-
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 
     testImplementation "com.github.tomakehurst:wiremock-jre8:2.33.2"
 }
 
-configurations {
-    cucumberRuntime {
-        extendsFrom runtimeClasspath
-    }
-}
-
 test {
     useJUnitPlatform()
-}
-
-task cucumber() {
-    dependsOn assemble, testClasses
-    doLast {
-        javaexec {
-            main = "io.cucumber.core.cli.Main"
-            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
-            args = ['--plugin', 'pretty', '--glue', 'com.example.gradle.apidemo', 'src/test/resources']
-        }
-    }
 }
