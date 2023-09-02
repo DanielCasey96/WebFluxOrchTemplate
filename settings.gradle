@@ -1,0 +1,5 @@
+rootProject.name = 'RestAssuredTemplate'
+include 'rest-assured-template-web'
+include 'rest-assured-template-wiremock'
+include 'rest-assured-template-acceptance-tests'
+
