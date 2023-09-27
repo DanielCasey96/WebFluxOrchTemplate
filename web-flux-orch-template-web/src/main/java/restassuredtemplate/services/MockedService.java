@@ -17,12 +17,12 @@ public class MockedService {
         this.mockedProvider = mockedProvider;
     }
 
-    public Mono<SingleDataResponse> getSingleDataResponse(String correlationId, Integer idValue) {
-        return mockedProvider.getSingleData(correlationId, idValue);
+    public Mono<SingleDataResponse> getSingleDataResponse(String correlationId, Integer idValue, String contentType) {
+        return mockedProvider.getSingleData(correlationId, idValue, contentType);
     }
 
-    public Flux<MultipleDataResponses> getMultipleDataResponses(String correlationId, Integer idValue) {
-        return mockedProvider.getMultipleData(correlationId, idValue);
+    public Flux<MultipleDataResponses> getMultipleDataResponses(String correlationId, Integer idValue, String contentType) {
+        return mockedProvider.getMultipleData(correlationId, idValue, contentType);
     }
 
 }

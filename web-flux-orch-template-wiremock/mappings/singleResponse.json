@@ -5,7 +5,7 @@
   },
   "response": {
     "status": 200,
-    "bodyFileName": "example.json",
+    "jsonBody": {"basicValue": "response1"},
     "headers": {
       "Content-Type": "application/json",
       "Correlation-Id": "12dsfs-213g"

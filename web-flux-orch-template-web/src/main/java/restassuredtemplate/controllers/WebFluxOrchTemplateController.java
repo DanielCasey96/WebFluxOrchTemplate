@@ -32,29 +32,31 @@ public class WebFluxOrchTemplateController {
     @GetMapping(value = "/web-flux-orch-template/data/single/{idValue}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Mono<SingleDataResponse>> getSingleData(
             @RequestHeader("Correlation-Id") String correlationId,
+            @RequestHeader("Content-Type") String contentType,
             @PathVariable Integer idValue) {
 
         String trackingTag = String.format("correlation id: %s, value id: %s", correlationId, idValue.toString());
         logger.info(String.format("Getting data (%s)", trackingTag));
 
-        return ResponseEntity.ok()
-                .body(mockedProvider.getSingleData(correlationId, idValue)
-                .doOnNext(response -> logger
-                    .info(String.format("Data retrieved Successfully (%s)", trackingTag)))
-                .doOnError(error -> logger
-                    .info(String.format("Getting data failed (%s)", error, trackingTag))));
+        return ResponseEntity.status(200)
+                .body(mockedProvider.getSingleData(correlationId, idValue, contentType)
+                        .doOnNext(response -> logger
+                                .info(String.format("Data retrieved Successfully (%s)" + response.getSingleData(), trackingTag)))
+                        .doOnError(error -> logger
+                                .info(String.format("Getting data failed (%s)", error, trackingTag))));
     }
 
     @GetMapping(value = "/web-flux-orch-template/data/multiple/{idValue}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Flux<MultipleDataResponses>> getMultipleData(
             @RequestHeader("Correlation-Id") String correlationId,
+            @RequestHeader("Content-Type") String contentType,
             @PathVariable Integer idValue) {
 
         String trackingTag = String.format("correlation id: %s, value id: %s", correlationId, idValue.toString());
         logger.info(String.format("Getting data (%s)", trackingTag));
 
-        return ResponseEntity.ok()
-                .body(mockedProvider.getMultipleData(correlationId, idValue)
+        return ResponseEntity.status(200)
+                .body(mockedProvider.getMultipleData(correlationId, idValue, contentType)
                         .doOnNext(response -> logger
                                 .info(String.format("Data retrieved Successfully (%s)", trackingTag)))
                         .doOnError(error -> logger

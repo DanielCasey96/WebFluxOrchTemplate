@@ -1,14 +1,16 @@
 package restassuredtemplate.models;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.NotNull;
+
 public class SingleDataResponse {
 
-    private String basicValue;
+    @NotNull
+    private final String basicValue;
 
-    public SingleDataResponse() {
-
-    }
-
-    public SingleDataResponse(String basicValue) {
+    @JsonCreator
+    public SingleDataResponse(@JsonProperty("basicValue") @NotNull String basicValue) {
 
         this.basicValue = basicValue;
     }
